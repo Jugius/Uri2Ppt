@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Uri2Ppt"
         mc:Ignorable="d"
-        Title="URI2PowerPoint" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterOwner"  ResizeMode="NoResize">
+        Title="URI2PowerPoint" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterScreen"  ResizeMode="CanMinimize">
     <Grid Height="auto" Width="auto">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>

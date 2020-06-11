@@ -12,10 +12,11 @@ namespace Uri2Ppt
     {
         public static string OpenExcelFile()
         {
-            OpenFileDialog dlg = new OpenFileDialog { 
-            Title = "Oткрыть файл Excel",
-            Filter = "Файл Excel|*.xlsx"
-            };
+            OpenFileDialog dlg = new OpenFileDialog {
+                Title = "Oткрыть файл Excel",
+                Filter = "Файл Excel|*.xlsx",
+                RestoreDirectory = true
+            };            
             if (dlg.ShowDialog() == true)
                 return dlg.FileName;
             return null;

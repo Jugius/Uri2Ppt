@@ -267,35 +267,32 @@ namespace Uri2Ppt
         internal static Uri GetUrlFromCell(ExcelRange cell)
         {
             if (cell == null) return null;
+
             var hyperlink = cell.Hyperlink;
             if (hyperlink != null)
                 return hyperlink;
 
-            string url = cell.Value?.ToString().Trim();
-            if (string.IsNullOrWhiteSpace(url))
-                return null;
-
-            //if (!url.StartsWith("http://") && !url.StartsWith("https://"))
-            //    url = "http://" + url;
-
-            //if (url.IndexOf('.') < 0) return null;
-
-            if (Uri.TryCreate(url, UriKind.Absolute, out hyperlink))
-                return hyperlink;
-
-            var link = cell.Formula;
-            int index = link.IndexOf(',');
-            if (index > 0)
+            if (cell.Value != null)
             {
-                link = link.Substring(0, index);
+                string url = cell.Value.ToString().Trim();
+                if (!string.IsNullOrWhiteSpace(url) && Uri.TryCreate(url, UriKind.Absolute, out hyperlink))
+                    return hyperlink;
             }
-            var onemore = link.Substring(11);
-            var final = onemore.Substring(0, onemore.Length - 1);
 
-            if (Uri.TryCreate(final, UriKind.Absolute, out hyperlink))
-                return hyperlink;
-
-            return null;
+            if (cell.Formula != null)
+            {
+                string formula = cell.Formula;
+                if (formula.Contains("HYPERLINK"))
+                {
+                    int Start, End;
+                    Start = formula.IndexOf('"', 0) + 1;
+                    End = formula.IndexOf('"', Start);
+                    formula = formula.Substring(Start, End - Start);
+                    if (Uri.TryCreate(formula, UriKind.Absolute, out hyperlink))
+                        return hyperlink;
+                }
+            }
+            return null;           
         }
         public static int ExcelColumnNameToNumber(string columnName)
         {

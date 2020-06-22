@@ -20,7 +20,7 @@
             </Button>
             <TextBlock Text="{Binding OpenedFileDescription}" VerticalAlignment="Center"></TextBlock>
         </StackPanel>
-        <GroupBox Grid.Row="1" Header="Колонки тыблицы" Margin="10,3,10,3" Height="auto" Width="auto">
+        <GroupBox Grid.Row="1" Header="Колонки таблицы" Margin="10,3,10,3" Height="auto" Width="auto">
             <Grid Width="auto" Height="auto">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
